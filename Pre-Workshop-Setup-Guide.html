@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+<title>Pre-Workshop Setup Guide</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400..700&family=DM+Sans:wght@400..700&family=JetBrains+Mono:wght@400..700&display=swap">
+<style>
+/* Layout: A4 pages stacked like printed sheets; same tokens as the workshop deck. */
+:root{
+  --bg:#F6F1E7; --paper:#FBF8F2; --sand:#EFE8DA; --desk:#E4DCCB;
+  --ink:#1E1C19; --soft:#57514A; --muted:#6E675E; --line:#D9CFBE;
+  --terra:#C8613F; --terra-t:#A8502F; --mustard:#E6AE48; --pastel:#F7E7B8;
+  --green:#44703A; --green-t:#2F5A27; --green-tint:#DDE8D2;
+  --orange:#9A5410; --orange-tint:#F7E3C6; --red:#A33A2E; --red-tint:#F3D7D0; --navy:#22304A; --navy-tint:#DCE2EC;
+  --serif:'Source Serif 4',Georgia,'Times New Roman',serif;
+  --sans:'DM Sans','Segoe UI',Arial,sans-serif;
+  --mono:'JetBrains Mono',Consolas,'Courier New',monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+body{margin:0;background:var(--desk);color:var(--ink);font:13.5px/1.5 var(--sans);
+  padding-block:24px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+p{margin:0}
+.page{position:relative;background:var(--bg);width:100%;max-width:794px;margin:0 auto 24px;padding:44px 52px 72px;
+  display:flex;flex-direction:column;gap:18px;border-radius:6px;box-shadow:0 10px 30px rgba(30,28,25,.14)}
+.pfoot{position:absolute;left:52px;right:52px;bottom:26px;display:flex;justify-content:space-between;gap:12px;
+  border-top:1px solid var(--line);padding-top:8px;font:700 10px var(--sans);letter-spacing:2px;text-transform:uppercase;color:var(--muted)}
+.eyebrow{font:700 11px/1.4 var(--sans);letter-spacing:2.5px;text-transform:uppercase;color:var(--c,var(--terra-t))}
+h1,h2{font-family:var(--serif);font-weight:600;line-height:1.08;margin:0;text-wrap:balance;letter-spacing:-.3px}
+h1{font-size:38px} h2{font-size:32px}
+#start{gap:14px}
+h1 em,h2 em{font-style:normal;color:var(--c,var(--terra-t))}
+h3{font:700 15px/1.3 var(--sans);margin:0}
+.lead{font-size:15px;color:var(--soft)}
+.head{display:flex;flex-direction:column;gap:6px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.sec{display:flex;align-items:baseline;gap:10px}
+.sec .n{font:700 12px var(--sans);color:var(--c,var(--terra-t));letter-spacing:1px}
+.sec h3{font-size:16px}
+.sec small{font-size:12px;color:var(--muted)}
+.row{display:flex;gap:14px;align-items:stretch}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.card{background:var(--paper);border:1.5px solid var(--ink);border-radius:14px;padding:14px 16px;display:flex;flex-direction:column;gap:10px;min-width:0}
+.card.soft{border-color:var(--line)}
+.sh{box-shadow:5px 5px 0 var(--sh,var(--green-tint))}
+.num{width:26px;height:26px;border-radius:50%;background:var(--ink);color:var(--paper);display:grid;place-items:center;font:700 13px var(--sans);flex:none}
+.num.t{background:var(--green-tint);color:var(--green-t);border:1.5px solid var(--green)}
+.step-h{display:flex;align-items:center;gap:10px}
+.cap{font-size:12.5px;color:var(--soft);line-height:1.45}
+.cap b{color:var(--ink)}
+.pill{display:inline-flex;align-items:center;gap:6px;font:700 11px var(--sans);padding:3px 10px;border-radius:999px;white-space:nowrap}
+/* mock UI */
+.br{border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:#FFFFFE}
+.bb{height:26px;background:var(--sand);border-bottom:1.5px solid var(--ink);display:flex;align-items:center;gap:4px;padding:0 8px}
+.dt{width:7px;height:7px;border-radius:50%;background:#C9BFAF;flex:none}
+.url{margin-left:6px;flex:1;min-width:0;font:600 10px var(--mono);background:#FFFFFE;border:1px solid var(--line);border-radius:999px;padding:1px 8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.bd{position:relative;padding:12px;height:108px;display:flex;flex-direction:column;gap:7px}
+.bar{height:6px;border-radius:3px;background:#ECE6DA}
+.gbtn{align-self:flex-start;font:700 11px var(--sans);padding:6px 11px;border-radius:7px;background:#2DA44E;color:#FFFFFE;box-shadow:0 0 0 4px rgba(45,164,78,.18)}
+.ptr{position:absolute;width:16px;height:20px}
+.dl{border:1px solid var(--line);border-radius:8px;padding:6px 8px;background:#FFFFFE;box-shadow:0 4px 12px rgba(30,28,25,.1);font-size:10.5px}
+.dl .f{display:flex;align-items:center;gap:7px;border:1.5px solid var(--green);border-radius:6px;padding:5px 7px;margin-top:4px}
+.fi{width:12px;height:15px;border-radius:2px;background:var(--ink);flex:none}
+.dl .fn{font:600 9.5px var(--mono);white-space:nowrap} .dl .op{font-weight:700;color:var(--green-t);font-size:10px}
+.dlg{border:1.5px solid var(--ink);border-radius:10px;overflow:hidden;background:#FFFFFE;display:flex;flex-direction:column}
+.tb{background:var(--ink);color:var(--paper);font:600 10px var(--sans);padding:5px 10px;letter-spacing:.3px}
+.tb.imp{background:var(--terra);color:var(--ink)}
+.db{padding:10px 12px 12px;display:flex;flex-direction:column;gap:6px;flex:1}
+.dt-t{font:700 13px var(--sans)}
+.opt{font-size:11.5px;color:var(--muted);display:flex;gap:7px;align-items:center;padding:4px 8px;border-radius:6px;border:1.5px solid transparent;line-height:1.3}
+.opt::before{content:"";width:10px;height:10px;border-radius:50%;border:1.5px solid #B9AFA0;flex:none}
+.opt.on{background:var(--green-tint);border-color:var(--green);color:var(--ink);font-weight:700}
+.opt.on::before{border-color:var(--green);background:radial-gradient(circle,var(--green) 45%,transparent 50%)}
+.field{font:700 11px var(--mono);border:1.5px solid var(--ink);border-radius:5px;padding:2px 8px;align-self:flex-start;margin-left:18px;background:#FFFFFE}
+.next{margin-top:auto;align-self:flex-end;font:700 10.5px var(--sans);background:var(--green);color:#FFFFFE;padding:3px 12px;border-radius:5px}
+.dnote{border-top:1.5px solid var(--line);padding:6px 12px;font:700 11px var(--sans);color:var(--green-t);background:#F4F7F0}
+.term{background:var(--ink);color:#F6F1E7;border-radius:12px;padding:12px 14px;font:500 11.5px/1.65 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.term .p{color:#E8875F} .term .ok{color:#9DC98A} .term .a{color:#E6AE48} .term .q{color:#B9AFA0}
+.code{position:relative;background:var(--sand);border:1px solid var(--line);border-radius:10px;padding:10px 64px 10px 12px;font:500 11.5px/1.65 var(--mono);white-space:pre-wrap;overflow-wrap:anywhere;margin:0}
+.copy{position:absolute;top:6px;right:6px;font:700 10px var(--sans);border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);border-radius:6px;padding:2px 8px;cursor:pointer}
+.copy:focus-visible{outline:2px solid var(--terra);outline-offset:2px}
+.kbd{display:inline-flex;align-items:center;font:700 11px var(--mono);border:1.5px solid var(--ink);border-bottom-width:3px;border-radius:6px;padding:1px 7px;background:var(--paper);white-space:nowrap}
+.type{font:600 11px var(--mono);border:1.5px dashed var(--green);color:var(--green-t);border-radius:6px;padding:1px 7px;white-space:nowrap}
+.keys{display:flex;align-items:center;gap:7px;flex-wrap:wrap;font-weight:700;color:var(--green-t)}
+.callout{display:flex;gap:12px;align-items:flex-start;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.45}
+.callout .ic{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font:800 13px var(--sans);flex:none;color:#FFFFFE}
+.warn{background:var(--orange-tint);border:1.5px solid var(--orange)} .warn .ic{background:var(--orange)}
+.info{background:var(--green-tint);border:1.5px solid var(--green)} .info .ic{background:var(--green)}
+.done{background:var(--ink);color:var(--paper);border-radius:14px;padding:14px 18px;display:flex;align-items:center;gap:14px}
+.done .ck{width:34px;height:34px;border-radius:50%;background:#9DC98A;display:grid;place-items:center;flex:none}
+.done h3{color:var(--paper);font-size:16px} .done p{color:#D9D1C3;font-size:12.5px}
+.osc{align-items:center;text-align:center;gap:5px;padding:12px}
+.osc .ico{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;border:1.5px solid var(--ink);background:var(--sh)}
+.osc h3{font-size:16px}
+.chk{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);border-radius:999px;padding:6px 14px 6px 8px;background:var(--paper);font-size:12.5px;font-weight:600;min-width:0}
+.chk .c{width:20px;height:20px;border-radius:50%;background:var(--green-tint);color:var(--green-t);display:grid;place-items:center;font-size:11px;font-weight:800;flex:none}
+table{border-collapse:collapse;width:100%;font-size:12.5px}
+td{padding:7px 8px;border-bottom:1px solid var(--line);vertical-align:top}
+tr:last-child td{border-bottom:0}
+td.m{font:600 11px var(--mono);color:var(--red)}
+.box{width:16px;height:16px;border:1.5px solid var(--ink);border-radius:4px;display:inline-block;vertical-align:-3px}
+a{color:inherit;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:2px}
+code{font:600 11.5px var(--mono);background:var(--sand);border-radius:5px;padding:1px 6px;white-space:nowrap}
+.banner{width:100%;aspect-ratio:690/226;object-fit:cover;border:2px solid var(--ink);border-radius:16px;box-shadow:8px 8px 0 #F2D57E;display:block}
+.flow{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.flow .node{border:1.5px solid var(--ink);border-radius:10px;padding:8px 14px;font:700 13px var(--sans);background:var(--paper)}
+.flow .arrow{color:var(--terra);font-weight:800}
+@media (max-width:700px){
+  .page{padding:28px 20px 64px} .pfoot{left:20px;right:20px}
+  .grid2,.grid3,.grid4{grid-template-columns:minmax(0,1fr)} .row{flex-direction:column}
+  h1{font-size:32px} h2{font-size:26px}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+@media print{
+  @page{size:A4;margin:0}
+  body{background:var(--bg);padding:0}
+  .page{width:210mm;max-width:none;height:297mm;margin:0;border-radius:0;box-shadow:none;overflow:hidden;break-after:page}
+  .copy{display:none}
+  .code{padding-right:12px}
+}
+</style>
+
+<!-- ============ PAGE 1 · COVER ============ -->
+<section class="page" id="start">
+  <img class="banner" src="assets/workshop-banner.png" alt="Git Essentials Workshop banner: the GitHub Octocat at a laptop, the Git logo, commits flowing to the GitHub cloud">
+  <div class="head" style="border-bottom:0;padding-bottom:0">
+    <p class="eyebrow">Pre-workshop setup guide · Git Essentials Workshop</p>
+    <h1>Install Git &amp; GitHub CLI <em>before the workshop</em></h1>
+    <p class="lead">28 Oct 2026 · Room 611 &nbsp;·&nbsp; Takes about 15–20 minutes</p>
+  </div>
+
+  <div class="card sh" style="--sh:#F2D57E;background:#FBF3DC">
+    <h3 style="font-family:var(--serif);font-size:20px;font-weight:600">Why install it before you come?</h3>
+    <div class="grid3" style="gap:12px">
+      <div style="display:flex;gap:10px"><span class="num" style="background:var(--terra);color:var(--ink)">1</span><p class="cap"><b>It saves workshop time.</b> We can start the hands-on practice straight away.</p></div>
+      <div style="display:flex;gap:10px"><span class="num" style="background:var(--terra);color:var(--ink)">2</span><p class="cap"><b>Venue Wi-Fi gets slow</b> when everyone downloads at once. Installing during the event can take a long time.</p></div>
+      <div style="display:flex;gap:10px"><span class="num" style="background:var(--terra);color:var(--ink)">3</span><p class="cap"><b>We will still explain the installation</b> in the workshop. Installing now just makes your workshop smoother.</p></div>
+    </div>
+  </div>
+
+  <div class="grid2">
+    <div class="card soft" style="flex-direction:row;align-items:center;gap:14px">
+      <svg width="76" height="22" viewBox="0 0 76 22" aria-label="Commits on a line"><path d="M8 11H68" stroke="#1E1C19" stroke-width="2"/><circle cx="8" cy="11" r="6" fill="#DDE8D2" stroke="#1E1C19" stroke-width="2"/><circle cx="28" cy="11" r="6" fill="#DDE8D2" stroke="#1E1C19" stroke-width="2"/><circle cx="48" cy="11" r="6" fill="#DDE8D2" stroke="#1E1C19" stroke-width="2"/><circle cx="68" cy="11" r="6" fill="#44703A" stroke="#1E1C19" stroke-width="2"/></svg>
+      <div><h3>Git</h3><p class="cap">Saves versions of your project</p></div>
+    </div>
+    <div class="card soft" style="flex-direction:row;align-items:center;gap:14px">
+      <span style="font:700 11px var(--mono);background:var(--ink);color:#9DC98A;border-radius:6px;padding:5px 7px">$ gh</span><span style="color:var(--terra);font-weight:800">→</span>
+      <svg width="30" height="30" viewBox="0 0 24 24" aria-label="GitHub logo"><path fill="#1E1C19" d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>
+      <div><h3>GitHub CLI</h3><p class="cap">Connects your terminal to GitHub</p></div>
+    </div>
+  </div>
+
+  <div class="sec"><span class="n">01</span><h3>Have these ready</h3></div>
+  <div class="grid2" style="gap:8px 14px">
+    <div class="chk"><span class="c">✓</span>GitHub account · <a href="https://github.com/signup">github.com/signup</a></div>
+    <div class="chk"><span class="c">✓</span>VS Code · <a href="https://code.visualstudio.com">code.visualstudio.com</a></div>
+    <div class="chk"><span class="c">✓</span>Your laptop’s admin password</div>
+    <div class="chk"><span class="c">✓</span>Internet · hotspot if Wi-Fi blocks downloads</div>
+  </div>
+
+  <div class="sec"><span class="n">02</span><h3>Pick your system</h3><small>then everyone finishes on page 6</small></div>
+  <div class="grid3">
+    <div class="card osc sh" style="--sh:var(--navy-tint)">
+      <div class="ico"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#1E1C19" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8M12 16v4"/></svg></div>
+      <h3>Windows</h3><p class="cap">Most of you · browser download</p>
+      <span class="pill" style="background:var(--navy);color:var(--paper)">Pages 2–3 →</span>
+    </div>
+    <div class="card osc sh" style="--sh:var(--red-tint)">
+      <div class="ico" style="font:700 22px var(--sans)">⌘</div>
+      <h3>macOS</h3><p class="cap">Homebrew</p>
+      <span class="pill" style="background:var(--terra-t);color:var(--paper)">Page 4 →</span>
+    </div>
+    <div class="card osc sh" style="--sh:var(--green-tint)">
+      <div class="ico" style="font:700 17px var(--mono)">&gt;_</div>
+      <h3>Linux</h3><p class="cap">apt · dnf · pacman</p>
+      <span class="pill" style="background:var(--green);color:var(--paper)">Page 5 →</span>
+    </div>
+  </div>
+  <div class="pfoot"><span>Git Essentials Workshop · Pre-workshop setup</span><span>01 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 2 · WINDOWS GIT ============ -->
+<section class="page" id="windows" style="--c:var(--navy)">
+  <div class="head"><p class="eyebrow">Windows · Step 1 of 4</p><h2>Install <em>Git</em></h2></div>
+
+  <div class="grid3">
+    <div class="card soft">
+      <div class="step-h"><span class="num t">1</span><h3>Go to <a href="https://git-scm.com/downloads/win">git-scm.com</a></h3></div>
+      <div class="br"><div class="bb"><i class="dt"></i><i class="dt"></i><i class="dt"></i><span class="url">git-scm.com</span></div>
+        <div class="bd"><b style="font:700 16px var(--sans)">git</b><div class="bar" style="width:80%"></div><div class="bar" style="width:55%"></div><span class="gbtn">⬇ Download for Windows</span>
+        <svg class="ptr" style="left:120px;top:82px" viewBox="0 0 16 20" aria-hidden="true"><path d="M1 1v16l4-4 3 6 3-1.5-3-6h6z" fill="#1E1C19" stroke="#FFFFFE" stroke-width="1"/></svg></div></div>
+      <p class="cap">Open Chrome or Edge, type the address, click the big button.</p>
+    </div>
+    <div class="card soft">
+      <div class="step-h"><span class="num t">2</span><h3>Get the installer</h3></div>
+      <div class="br"><div class="bb"><i class="dt"></i><i class="dt"></i><i class="dt"></i><span class="url">git-scm.com/downloads/win</span></div>
+        <div class="bd" style="justify-content:center">
+          <div class="dl"><b>Downloads</b><div class="f"><i class="fi"></i><div><div class="fn">Git-2.x.x-64-bit.exe</div><div class="op">Open file</div></div></div></div></div></div>
+      <p class="cap">It downloads by itself. Open it from your <b>Downloads</b>.</p>
+    </div>
+    <div class="card soft">
+      <div class="step-h"><span class="num t">3</span><h3>Allow it to run</h3></div>
+      <div class="dlg"><div class="tb">User Account Control</div>
+        <div class="db" style="height:108px"><span class="dt-t" style="font-size:11.5px">Do you want to allow this app to make changes to your device?</span><span class="cap" style="font-size:10.5px">Git for Windows</span>
+          <div style="margin-top:auto;display:flex;gap:6px;justify-content:flex-end"><span class="next" style="margin:0;box-shadow:0 0 0 4px rgba(68,112,58,.22)">Yes</span><span class="next" style="margin:0;background:#FFFFFE;color:var(--ink);border:1px solid var(--line)">No</span></div></div></div>
+      <p class="cap">Windows asks for permission. Click <b>Yes</b>.</p>
+    </div>
+  </div>
+
+  <div class="sec" style="margin-top:4px"><span class="num" style="width:24px;height:24px;font-size:12px">4</span><h3>Click through the installer</h3></div>
+  <div class="callout info"><span class="ic">i</span><p>Keep the default on <b>every screen</b> and click <b>Next</b> — except these three screens. Pick the <b>green</b> option there.</p></div>
+  <div class="grid3">
+    <div class="dlg"><div class="tb">Git Setup</div><div class="db" style="min-height:150px"><span class="dt-t">Default editor</span><span class="opt">Vim</span><span class="opt on">Visual Studio Code</span><span class="next">Next</span></div><div class="dnote">No VS Code? Pick Notepad</div></div>
+    <div class="dlg"><div class="tb">Git Setup</div><div class="db" style="min-height:150px"><span class="dt-t">Initial branch name</span><span class="opt">Let Git decide</span><span class="opt on">Override</span><span class="field">main</span><span class="next">Next</span></div><div class="dnote">Type: main</div></div>
+    <div class="dlg"><div class="tb imp">Git Setup · Important</div><div class="db" style="min-height:150px"><span class="dt-t">PATH environment</span><span class="opt">Git Bash only</span><span class="opt on">Command line + 3rd-party software</span><span class="opt">+ Unix tools</span><span class="next">Next</span></div><div class="dnote">The middle one (recommended)</div></div>
+  </div>
+  <div class="keys" style="justify-content:center">Every other screen <span class="kbd">Next</span> → last screen <span class="kbd">Install</span> → wait ~1 min → <span class="kbd">Finish</span></div>
+
+  <div class="done"><span class="ck"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1E1C19" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg></span><div><h3>Git is installed</h3><p>Now install GitHub CLI → next page</p></div></div>
+  <div class="pfoot"><span>← Pick your system</span><span>Windows · GitHub CLI →</span><span>02 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 3 · WINDOWS GH ============ -->
+<section class="page" style="--c:var(--navy)">
+  <div class="head"><p class="eyebrow">Windows · Step 2 of 4</p><h2>Install <em>GitHub CLI</em></h2></div>
+
+  <div class="grid2">
+    <div class="card soft">
+      <div class="step-h"><span class="num t">1</span><h3>Go to <a href="https://cli.github.com">cli.github.com</a></h3></div>
+      <div class="br"><div class="bb"><i class="dt"></i><i class="dt"></i><i class="dt"></i><span class="url">cli.github.com</span></div>
+        <div class="bd"><b style="font:700 14px var(--sans)">GitHub CLI</b><div class="bar" style="width:70%"></div><div class="bar" style="width:45%"></div><span class="gbtn" style="background:var(--ink)">Download for Windows</span>
+        <svg class="ptr" style="left:132px;top:84px" viewBox="0 0 16 20" aria-hidden="true"><path d="M1 1v16l4-4 3 6 3-1.5-3-6h6z" fill="#1E1C19" stroke="#FFFFFE" stroke-width="1"/></svg></div></div>
+      <p class="cap">This downloads a <b>.msi</b> file.</p>
+    </div>
+    <div class="card soft">
+      <div class="step-h"><span class="num t">2</span><h3>Open the .msi file</h3></div>
+      <div class="br"><div class="bb"><i class="dt"></i><i class="dt"></i><i class="dt"></i><span class="url">cli.github.com</span></div>
+        <div class="bd" style="align-items:flex-end"><div class="dl" style="width:78%"><b>Downloads</b><div class="f"><i class="fi"></i><div><div class="fn">gh_2.x.x_windows_amd64.msi</div><div class="op">Open file</div></div></div></div></div></div>
+      <p class="cap">Click <b>Yes</b> if Windows asks for permission.</p>
+    </div>
+  </div>
+
+  <div class="sec"><span class="num" style="width:24px;height:24px;font-size:12px">3</span><h3>Click through the setup</h3></div>
+  <div class="grid4">
+    <div class="dlg"><div class="tb">GitHub CLI Setup</div><div class="db" style="min-height:96px"><span class="dt-t">Welcome</span><span class="next">Next</span></div></div>
+    <div class="dlg"><div class="tb">GitHub CLI Setup</div><div class="db" style="min-height:96px"><span class="dt-t">Destination folder</span><span class="opt on">Keep default</span><span class="next">Next</span></div></div>
+    <div class="dlg"><div class="tb">GitHub CLI Setup</div><div class="db" style="min-height:96px"><span class="dt-t">Ready to install</span><span class="next">Install</span></div></div>
+    <div class="dlg"><div class="tb">GitHub CLI Setup</div><div class="db" style="min-height:96px"><span class="dt-t">Completed ✓</span><span class="next">Finish</span></div></div>
+  </div>
+
+  <div class="sec"><span class="num" style="width:24px;height:24px;font-size:12px">4</span><h3>Open a new terminal</h3></div>
+  <div class="keys"><span class="kbd">⊞ Win</span>→<span class="type">git bash</span>→<span class="kbd">Enter</span><span style="color:var(--soft);font-weight:500">then go to <b style="color:var(--ink)">page 6</b> to check everything works</span></div>
+
+  <div class="card soft" style="background:#F4F7F0;border-color:var(--green)">
+    <div class="step-h"><h3>Shortcut: winget</h3><span class="cap">Instead of pages 2–3 · open <b>PowerShell</b> and run:</span></div>
+    <pre class="code">winget install --id Git.Git -e --source winget
+winget install --id GitHub.cli -e</pre>
+  </div>
+  <div class="callout warn"><span class="ic">!</span><p><b>“Windows protected your PC”?</b> Click <b>More info</b> → <b>Run anyway</b>. &nbsp;<b>winget not recognized?</b> Use the browser steps instead.</p></div>
+  <div class="pfoot"><span>← Windows · Git</span><span>Verify → page 6</span><span>03 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 4 · MACOS ============ -->
+<section class="page" id="macos" style="--c:var(--terra-t)">
+  <div class="head"><p class="eyebrow">macOS · Steps 1 + 2</p><h2>macOS <em>setup</em></h2></div>
+  <div class="flow"><span class="node" style="background:var(--ink);color:#9DC98A;font-family:var(--mono)">Terminal</span><span class="arrow">→</span><span class="node" style="background:var(--red-tint)">Homebrew <span style="font-weight:500;color:var(--soft)">· installs tools for you</span></span><span class="arrow">→</span><span class="node" style="font-family:var(--mono)">git</span><span class="node" style="font-family:var(--mono)">gh</span></div>
+
+  <div class="card soft"><div class="step-h"><span class="num t">1</span><h3>Open Terminal</h3></div>
+    <div class="keys"><span class="kbd">⌘ Cmd</span>+<span class="kbd">Space</span>→<span class="type">terminal</span>→<span class="kbd">Return</span></div></div>
+
+  <div class="card soft"><div class="step-h"><span class="num t">2</span><h3>Install Homebrew</h3></div>
+    <pre class="code">/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"</pre>
+    <p class="cap">Enter your Mac password when asked · typing shows nothing, that’s normal · takes 5–10 min</p></div>
+
+  <div class="card soft"><div class="step-h"><span class="num t">3</span><h3>Add Homebrew to your PATH</h3><span class="pill" style="background:var(--orange-tint);color:var(--orange)">Apple M-chip only</span></div>
+    <pre class="code">echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' &gt;&gt; ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"</pre>
+    <p class="cap">Check: Apple menu → About This Mac → <b>Chip: Apple M…</b> · Intel Mac? Skip this step.</p></div>
+
+  <div class="card soft"><div class="step-h"><span class="num t">4</span><h3>Install Git + GitHub CLI</h3></div>
+    <pre class="code">brew install git gh</pre></div>
+
+  <div class="card soft" style="flex-direction:row;align-items:center;justify-content:space-between"><div class="step-h"><span class="num">5</span><h3>Quit &amp; reopen Terminal</h3></div><div class="keys"><span class="kbd">⌘</span>+<span class="kbd">Q</span></div></div>
+
+  <div class="callout info"><span class="ic">?</span><p><b>No Homebrew?</b> Git: run <code>xcode-select --install</code> · GitHub CLI: download the <b>.pkg</b> from <a href="https://cli.github.com">cli.github.com</a>. Then go to <b>page 6</b>.</p></div>
+  <div class="pfoot"><span>← Pick your system</span><span>Verify → page 6</span><span>04 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 5 · LINUX ============ -->
+<section class="page" id="linux" style="--c:var(--green-t)">
+  <div class="head"><p class="eyebrow">Linux · Steps 1 + 2</p><h2>Linux <em>setup</em></h2></div>
+
+  <div class="sec"><span class="n">A</span><h3>Ubuntu · Debian · Mint</h3></div>
+  <div class="card soft">
+    <div class="step-h" style="justify-content:space-between"><div class="step-h"><span class="num t">1</span><h3>Open Terminal</h3></div><div class="keys"><span class="kbd">Ctrl</span>+<span class="kbd">Alt</span>+<span class="kbd">T</span></div></div>
+    <div class="step-h"><span class="num t">2</span><h3>Install Git</h3></div>
+    <pre class="code">sudo apt update &amp;&amp; sudo apt install git -y</pre>
+  </div>
+  <div class="card soft">
+    <div class="step-h" style="justify-content:space-between"><div class="step-h"><span class="num t">3</span><h3>Add GitHub’s package source</h3></div><span class="cap">copy the whole box</span></div>
+    <pre class="code">sudo mkdir -p -m 755 /etc/apt/keyrings
+wget -qO- https://cli.github.com/packages/githubcli-archive-keyring.gpg \
+  | sudo tee /etc/apt/keyrings/githubcli-archive-keyring.gpg &gt; /dev/null
+sudo chmod go+r /etc/apt/keyrings/githubcli-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/githubcli-archive-keyring.gpg] https://cli.github.com/packages stable main" \
+  | sudo tee /etc/apt/sources.list.d/github-cli.list &gt; /dev/null</pre>
+  </div>
+  <div class="card soft">
+    <div class="step-h"><span class="num">4</span><h3>Install GitHub CLI</h3></div>
+    <pre class="code">sudo apt update &amp;&amp; sudo apt install gh -y</pre>
+  </div>
+
+  <div class="sec"><span class="n">B</span><h3>Other distros · one line</h3></div>
+  <div class="card soft" style="gap:8px">
+    <div class="step-h"><h3 style="width:96px;flex:none;font-size:12px;letter-spacing:1.5px">FEDORA</h3><pre class="code" style="flex:1;min-width:0">sudo dnf install git gh</pre></div>
+    <div class="step-h"><h3 style="width:96px;flex:none;font-size:12px;letter-spacing:1.5px">ARCH</h3><pre class="code" style="flex:1;min-width:0">sudo pacman -S git github-cli</pre></div>
+    <div class="step-h"><h3 style="width:96px;flex:none;font-size:12px;letter-spacing:1.5px">OPENSUSE</h3><pre class="code" style="flex:1;min-width:0">sudo zypper install git gh</pre></div>
+  </div>
+  <div class="callout info"><span class="ic">i</span><p>The <b>sudo password</b> is your login password · typing shows nothing. Then go to <b>page 6</b>.</p></div>
+  <div class="pfoot"><span>← Pick your system</span><span>Verify → page 6</span><span>05 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 6 · VERIFY + LOGIN ============ -->
+<section class="page" id="verify" style="--c:var(--terra-t)">
+  <div class="head"><p class="eyebrow">All systems · Steps 3 + 4</p><h2>Verify, set up <em>&amp; log in</em></h2></div>
+
+  <div class="sec"><span class="n">03</span><h3>Check it works</h3><small>in a <b>new</b> terminal</small></div>
+  <div class="grid2">
+    <pre class="code">git --version
+gh --version</pre>
+    <pre class="term"><span class="p">$</span> git --version
+<span class="a">git version 2.x.x</span>   <span class="ok">✓</span>
+<span class="p">$</span> gh --version
+<span class="a">gh version 2.x.x</span>    <span class="ok">✓</span></pre>
+  </div>
+  <div class="callout warn"><span class="ic">!</span><p><b>“not recognized” / “not found”?</b> Close the terminal, open a new one and try again.</p></div>
+
+  <div class="sec"><span class="n">04</span><h3>Tell Git who you are</h3><small>once per laptop</small></div>
+  <div class="card soft">
+    <pre class="code">git config --global user.name "Your Name"
+git config --global user.email "you@example.com"
+git config --global init.defaultBranch main</pre>
+    <p class="cap">Use <b>your</b> name and the <b>same email as your GitHub account</b>.</p>
+  </div>
+
+  <div class="sec"><span class="n">05</span><h3>Connect to GitHub</h3><small>use ↑ ↓ and Enter to choose</small></div>
+  <div class="row">
+    <pre class="term" style="flex:1.45;min-width:0;font-size:11px"><span class="p">$</span> gh auth login
+<span class="q">? Where do you use GitHub?</span> › <span class="a">GitHub.com</span>
+<span class="q">? Preferred protocol?</span> › <span class="a">HTTPS</span>
+<span class="q">? Authenticate Git?</span> › <span class="a">Yes</span>
+<span class="q">? How to authenticate?</span> › <span class="a">Login with a web browser</span>
+
+! One-time code: <span class="a">ABCD-1234</span>
+<span class="ok">✓ Logged in as your-username</span></pre>
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:8px">
+      <div class="br"><div class="bb"><i class="dt"></i><i class="dt"></i><i class="dt"></i><span class="url">github.com/login/device</span></div>
+        <div class="bd" style="height:auto;align-items:center;padding:16px 12px">
+          <b style="font-size:13px">Device activation</b>
+          <span style="font:700 18px var(--mono);letter-spacing:3px;border:1.5px solid var(--green);border-radius:8px;padding:4px 12px">ABCD-1234</span>
+          <span class="gbtn" style="align-self:center">Authorize</span></div></div>
+      <p class="cap">The browser opens · paste the code · click <b>Authorize</b>. Check anytime: <code>gh auth status</code></p>
+    </div>
+  </div>
+  <div class="pfoot"><span>← Pick your system</span><span>Checklist → page 7</span><span>06 / 07</span></div>
+</section>
+
+<!-- ============ PAGE 7 · CHECKLIST ============ -->
+<section class="page" style="--c:var(--green-t)">
+  <div class="head"><p class="eyebrow">All systems · Final page</p><h2>Ready <em>checklist</em></h2></div>
+  <div class="grid2">
+    <div class="card sh">
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600">Tick all four</h3>
+      <table>
+        <tr><td><span class="box"></span></td><td><b>Git</b></td><td style="text-align:right"><code>git --version</code></td></tr>
+        <tr><td><span class="box"></span></td><td><b>GitHub CLI</b></td><td style="text-align:right"><code>gh --version</code></td></tr>
+        <tr><td><span class="box"></span></td><td><b>Name &amp; email</b></td><td style="text-align:right"><code>git config --list</code></td></tr>
+        <tr><td><span class="box"></span></td><td><b>Logged in</b></td><td style="text-align:right"><code>gh auth status</code></td></tr>
+      </table>
+    </div>
+    <div class="card soft">
+      <h3 style="font-family:var(--serif);font-size:20px;font-weight:600">Quick fixes</h3>
+      <table>
+        <tr><td class="m">winget not recognized</td><td>Use the browser steps (pages 2–3)</td></tr>
+        <tr><td class="m">brew: command not found</td><td>Redo macOS step 3</td></tr>
+        <tr><td class="m">Unable to locate package gh</td><td>Redo Linux step 3</td></tr>
+        <tr><td class="m">Push asks for a password</td><td>Run <code>gh auth login</code></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <div class="callout info"><span class="ic">✓</span><p><b>Stuck on a step?</b> Don’t worry. Bring your laptop anyway — we explain the installation again at the start of the workshop and can help you there. Trying it at home first still saves a lot of time.</p></div>
+
+  <div class="done" style="padding:22px 24px;align-items:flex-start;flex-direction:column;gap:10px;background:var(--ink)">
+    <p class="eyebrow" style="color:#E8875F">See you at the workshop</p>
+    <h2 style="color:var(--paper);font-size:28px">Git Essentials Workshop</h2>
+    <p style="color:#D9D1C3;font-size:14px">28 Oct 2026 · Room 611</p>
+    <p style="color:#D9D1C3;font-size:13px">Bring: your laptop (charged) · charger · your GitHub login</p>
+  </div>
+  <div class="pfoot"><span>← Pick your system</span><span>Git Essentials Workshop</span><span>07 / 07</span></div>
+</section>
+
+<script>
+document.querySelectorAll('pre.code').forEach(function(pre){
+  var text=pre.textContent.trim();
+  var b=document.createElement('button');b.type='button';b.className='copy';b.textContent='Copy';
+  b.setAttribute('aria-label','Copy command');
+  b.addEventListener('click',function(){
+    var done=function(){b.textContent='Copied';setTimeout(function(){b.textContent='Copy'},1500)};
+    var fallback=function(){var r=document.createRange();r.selectNodeContents(pre);var s=getSelection();s.removeAllRanges();s.addRange(r);b.textContent='Selected · Ctrl+C'};
+    try{navigator.clipboard.writeText(text).then(done,fallback)}catch(e){fallback()}
+  });
+  pre.appendChild(b);
+});
+</script>
+
+</body>
+</html>
